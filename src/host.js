@@ -78,7 +78,7 @@ function renderRow(v, idx) {
 export const biliFeedTool = {
   name: 'bili_feed',
   description:
-    'B站爆款雷达：每日扫描B站AI相关账号按点赞发现爆款视频，智能聚类话题，基于热门话题生成 AI 情报调查报告（新兴起量信号/核心达人/话题调查/跨平台建议），产出深色主题 HTML 日报。支持自定义关键词批量查询（如 "Stable Diffusion,ComfyUI,AI绘画"）。' +
+    'B站爆款雷达：按关键词扫描 B 站作品（默认关键词 AI，可换任意关键词），按点赞发现爆款视频，智能聚类话题，基于热门话题生成情报调查报告（新兴起量信号/核心达人/话题调查/跨平台建议），产出深色主题 HTML 日报。' +
     '⚠️数据每日15:00更新前一天：请求无数据日期时工具会拦截并要求先向用户确认，未经确认禁止查询（扣积分无返回）。' +
     '需要 RedFox API Key（面板「设置」页或环境变量 REDFOX_API_KEY）。',
   parameters: {

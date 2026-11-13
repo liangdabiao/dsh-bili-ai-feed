@@ -150,11 +150,11 @@
     const feeds = c.feeds || []
     return `
       <header class="head">
-        <span class="eyebrow">BILIBILI AI FEED</span>
+        <span class="eyebrow">BILIBILI VIRAL RADAR</span>
         <div class="head-row">
-          <h1>B站<strong>AI信息源</strong></h1>
+          <h1>B站<strong>爆款雷达</strong></h1>
         </div>
-        <p>每日扫描B站AI相关爆款视频（按点赞发现、智能聚类），生成深色主题 HTML 日报（封面图+互动数据）+ AI 情报调查报告。数据每日 <strong>15:00</strong> 更新前一天；当前最新可用日期 <strong>${esc(c.latest_date || '—')}</strong>。RedFox API Key ${c.has_key ? '已配置' : '未配置——去「设置」页填写'}。</p>
+        <p>按关键词扫描 B 站爆款视频（默认关键词 AI，可换任意关键词；按点赞发现、智能聚类），生成深色主题 HTML 日报（封面图+互动数据）+ 情报调查报告。数据每日 <strong>15:00</strong> 更新前一天；当前最新可用日期 <strong>${esc(c.latest_date || '—')}</strong>。RedFox API Key ${c.has_key ? '已配置' : '未配置——去「设置」页填写'}。</p>
       </header>
       ${!c.has_key ? `<div class="empty" style="margin-bottom:var(--sp-6);padding:var(--sp-4) var(--sp-5);text-align:left"><div class="e-title">🔑 还没有配置 RedFox API Key</div><p>到<a href="#/settings">「设置」</a>页填写（ak_ 开头，<a href="https://redfox.hk/settings/api-keys?source=github" target="_blank" rel="noreferrer">红狐 hub 获取 ↗</a>）。查询无数据日期会扣积分无返回，面板已内置日期拦截。</p></div>` : ''}
       <section class="sec" style="margin-top:0">
