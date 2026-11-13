@@ -3,6 +3,7 @@
 > 每日自动扫描B站AI创作内容，按点赞量筛选爆款视频，智能聚类后生成深色主题 HTML 日报（封面图+互动数据+视频直链），并基于热门话题输出 AI 情报调查报告。
 
 dsh 插件（完整形态：原生工具 + 数据持久化 + 侧栏看板）。支持自定义关键词批量查询。移植自 [redfox-community](https://github.com/redfox-data/redfox-community) 的 skills/bili-ai-feed，Python 引擎（daily_report.py 1463 行）全量重写为 Node。
+<img width="2025" height="797" alt="image" src="https://github.com/user-attachments/assets/054d3c6c-2e2a-41ab-8145-d9b65bd07c73" />
 
 ## ⚠️ 数据纪律（核心设计）
 
