@@ -1,4 +1,4 @@
-// B站AI信息源 · Host 半边（bili_feed 原生工具 + bili-ai-feed 技能提供方 + 硬规则注入 + 面板数据面）。
+// B站爆款雷达 · Host 半边（bili_feed 原生工具 + bili-ai-feed 技能提供方 + 硬规则注入 + 面板数据面）。
 // 扫描/聚类/情报 briefing 是同步接口；情报调查延伸与强制模板输出由会话模型按技能完成。
 import Schema from '@deepseek-ai/schemastery'
 import { join, dirname } from 'node:path'
@@ -19,7 +19,7 @@ export const name = 'bili-ai-feed' // = cordis.patch.yml 的 id
 export const inject = ['tools', 'skills', 'systemPrompt', 'webServer', 'connection']
 
 export const Config = Schema.object({
-  injectRules: Schema.boolean().default(true).description('注入B站AI信息源工作流到系统提示'),
+  injectRules: Schema.boolean().default(true).description('注入B站爆款雷达工作流到系统提示'),
   apiKey: Schema.string().default('').description('RedFox API Key（ak_ 开头；留空读面板设置或环境变量 REDFOX_API_KEY）'),
   proxyUrl: Schema.string().default('').description('HTTP(S) 代理（访问 redfox.hk 用），留空直连'),
 })
@@ -64,7 +64,7 @@ const result = (ok, summary, data = '', footer = '') => ({ ok, summary, data, fo
 const MAX_TEXT = 58000
 
 function buildFooter(meta) {
-  return `📺 数据源：redfox.hk API（B站AI信息源）· ${meta.date} · 扫描 ${meta.total} 条 · 聚类 ${meta.topic_count} 类 · 记录 ${meta.feed_id}`
+  return `📺 数据源：redfox.hk API（B站爆款雷达）· ${meta.date} · 扫描 ${meta.total} 条 · 聚类 ${meta.topic_count} 类 · 记录 ${meta.feed_id}`
 }
 
 // 单条视频行（模型可读）
@@ -78,7 +78,7 @@ function renderRow(v, idx) {
 export const biliFeedTool = {
   name: 'bili_feed',
   description:
-    'B站AI信息源：每日扫描B站AI相关账号按点赞发现爆款视频，智能聚类话题，基于热门话题生成 AI 情报调查报告（新兴起量信号/核心达人/话题调查/跨平台建议），产出深色主题 HTML 日报。支持自定义关键词批量查询（如 "Stable Diffusion,ComfyUI,AI绘画"）。' +
+    'B站爆款雷达：每日扫描B站AI相关账号按点赞发现爆款视频，智能聚类话题，基于热门话题生成 AI 情报调查报告（新兴起量信号/核心达人/话题调查/跨平台建议），产出深色主题 HTML 日报。支持自定义关键词批量查询（如 "Stable Diffusion,ComfyUI,AI绘画"）。' +
     '⚠️数据每日15:00更新前一天：请求无数据日期时工具会拦截并要求先向用户确认，未经确认禁止查询（扣积分无返回）。' +
     '需要 RedFox API Key（面板「设置」页或环境变量 REDFOX_API_KEY）。',
   parameters: {
@@ -103,7 +103,7 @@ export const biliFeedTool = {
     if (args.action === 'fetch') {
       const opts = feedOpts({ settings: getSettings(), config: cfg })
       if (!opts.apiKey) {
-        return result(false, '未配置 RedFox API Key。请用户到面板「B站AI信息源 → 设置」填入，或在插件配置/环境变量 REDFOX_API_KEY 里配置（获取：https://redfox.hk/settings/api-keys?source=github）。')
+        return result(false, '未配置 RedFox API Key。请用户到面板「B站爆款雷达 → 设置」填入，或在插件配置/环境变量 REDFOX_API_KEY 里配置（获取：https://redfox.hk/settings/api-keys?source=github）。')
       }
       const count = Math.min(Math.max(Number(args.count) || 200, 20), 200)
       const confirmNewer = args.confirmNewer === 'true' || args.confirmNewer === true
@@ -113,13 +113,13 @@ export const biliFeedTool = {
       if (data.date_blocked) {
         return result(false,
           `⛔ **${data.requested_date}数据尚未更新**\n数据更新规则：每日15:00更新前一天的数据\n当前可查询的最新日期：${data.latest}\n\n是否需要查询${data.latest}的数据？（用户明确确认后，再调一次 fetch 并传 confirmNewer="true"）`,
-          '', '📺 数据源：redfox.hk API（B站AI信息源）· 未产生查询')
+          '', '📺 数据源：redfox.hk API（B站爆款雷达）· 未产生查询')
       }
 
       if (!data.articles.length) {
         return result(false,
           `关键词 ${data.keywords.join('/')} 在 ${data.date} 暂无内容。可建议用户更换关键词或查询更近日期；不要自动改查其他关键词。`,
-          '', `📺 数据源：redfox.hk API（B站AI信息源）· ${data.date} · 0 条`)
+          '', `📺 数据源：redfox.hk API（B站爆款雷达）· ${data.date} · 0 条`)
       }
 
       const meta = saveFeed(data)
@@ -130,7 +130,7 @@ export const biliFeedTool = {
       // 分类概览（强制输出模板用）
       const total = data.articles.length
       const overview = [
-        `## B站AI信息源 · ${data.date} 日报`,
+        `## B站爆款雷达 · ${data.date} 日报`,
         '',
         `**扫描 ${total} 条热门视频，聚类 ${data.clusters.length} 个分类**`,
         '',
@@ -157,7 +157,7 @@ export const biliFeedTool = {
 
       const briefingMd = data.briefing
         ? [
-            '### AI情报调查报告',
+            '### 情报调查报告',
             '',
             briefingToMarkdownSafe(data.briefing, data.articles),
           ].join('\n')
@@ -165,7 +165,7 @@ export const biliFeedTool = {
 
       const summary =
         `已入库（feedId=${meta.feed_id}）。${data.date} · ${total} 条 · ${data.clusters.length} 类。` +
-        `按 bili-ai-feed 技能的强制输出模板向用户输出：分类概览表 → 情报调查报告六板块（用下方数据）→ 日报地址 ${reportFile}。板块无数据标"暂无"不删板块，数值严禁编造。`
+        `按 bili-ai-feed 技能的强制输出模板向用户输出：分类概览表 → 情报调查报告六板块（用下方数据）。板块无数据标"暂无"不删板块，数值严禁编造。桌面端 WebContentsView 会 deny window.open/target=_blank，报告只能在面板内查看——告诉用户点侧栏「B站爆款雷达」的报告页/详情页（HTML 日报记录 ${meta.feed_id}，磁盘文件 ${reportFile}），不要把磁盘路径当成可点开的入口。`
 
       return result(true, summary, [overview, briefingMd].filter(Boolean).join('\n\n').slice(0, MAX_TEXT), buildFooter(pm))
     }

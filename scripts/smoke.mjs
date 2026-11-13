@@ -69,7 +69,7 @@ let fid
   check('fetch 去重+过滤', r.data.includes('BV1a') && !r.data.includes('重复视频'), '')
   check('fetch 视频链接拼接', r.data.includes('bilibili.com/video/BV1a'), '')
   check('fetch 页脚', (r.footer || '').includes('2026-11-11') && (r.footer || '').includes(fid), (r.footer || '').slice(0, 80))
-  check('batch payload 结构', lastPayload?.keywords?.[0] === 'AI' && lastPayload.source === 'B站AI信息源-dsh' && lastPayload.pageSize === 200, JSON.stringify(lastPayload || {}).slice(0, 80))
+  check('batch payload 结构', lastPayload?.keywords?.[0] === 'AI' && lastPayload.source === 'B站爆款雷达-dsh' && lastPayload.pageSize === 200, JSON.stringify(lastPayload || {}).slice(0, 80))
 }
 {
   // 日期拦截：无数据区间（未来日期）

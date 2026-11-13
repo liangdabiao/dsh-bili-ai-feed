@@ -1,6 +1,6 @@
 {
   "meta": {
-    "title": "Bilibili AI Feed",
-    "description": "Daily scan of trending Bilibili AI videos: like-based discovery, topic clustering, dark-theme HTML digest (covers + engagement) + AI intelligence briefing. Custom keyword batches supported. Requires RedFox API Key."
+    "title": "Bilibili Viral Radar",
+    "description": "Bilibili viral radar: like-based discovery of trending Bilibili videos (AI by default, any keyword supported), clustering, dark-theme HTML digest (covers + engagement) + intel briefing. Requires a RedFox API key."
   }
 }

@@ -1,6 +1,6 @@
 // ============================================================================
-// B站AI信息源 · 浏览器半边
-//   - 侧栏加「B站AI信息源」入口，主区域是插件页面（/bili-ai-feed/，iframe）
+// B站爆款雷达 · 浏览器半边
+//   - 侧栏加「B站爆款雷达」入口，主区域是插件页面（/bili-ai-feed/，iframe）
 //   - 页面发 bili-ai-feed:refresh：postMessage 一段草稿，这里开新对话并填进输入框（不自动发送）
 //   - 明暗跟随 dsh 主题
 //
@@ -60,7 +60,7 @@ function apply(ctx) {
     return h('iframe', {
       ref,
       src: SRC,
-      title: 'B站AI信息源',
+      title: 'B站爆款雷达',
       allow: 'fullscreen',
       onLoad: (e) => post(e.currentTarget),
       style: { width: '100%', height: '100%', border: 0, display: 'block' },
@@ -68,7 +68,7 @@ function apply(ctx) {
   }
 
   ctx.slots.inject('sidebar.panellist', () =>
-    ctx.slots.register({ name: 'sidebar.panellist', id: PANEL, order: 18, label: () => 'B站AI信息源' }, PanelIcon))
+    ctx.slots.register({ name: 'sidebar.panellist', id: PANEL, order: 18, label: () => 'B站爆款雷达' }, PanelIcon))
   ctx.slots.inject('main', () => ctx.slots.register({ name: 'main', key: PANEL }, BiliFeedPanel))
 }
 

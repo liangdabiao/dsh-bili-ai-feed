@@ -1,6 +1,6 @@
 {
   "meta": {
-    "title": "B站AI信息源",
-    "description": "每日扫描B站AI相关爆款视频：按点赞发现、智能聚类、深色主题 HTML 日报（封面图+互动数据）+ AI 情报调查报告。支持自定义关键词批量查询。需 RedFox API Key。"
+    "title": "B站爆款雷达",
+    "description": "B站爆款雷达：按点赞发现 B 站爆款视频（默认 AI，可换任意关键词），智能聚类、深色主题 HTML 日报（封面图+互动数据）+ 情报调查报告。需 RedFox API Key。"
   }
 }

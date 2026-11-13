@@ -57,7 +57,7 @@ test('resolveFeed：缺省最新', () => {
 test('report.html 落盘 + formatDigestHtml', () => {
   const meta = listFeeds()[0]
   const raw = getRaw(meta.feed_id)
-  const html = formatDigestHtml({ dateStr: raw.date, articles: raw.articles, clusters: raw.clusters, briefing: raw.briefing, source: 'B站AI信息源-dsh' })
+  const html = formatDigestHtml({ dateStr: raw.date, articles: raw.articles, clusters: raw.clusters, briefing: raw.briefing, source: 'B站爆款雷达-dsh' })
   assert.ok(html.includes('category-card'))
   assert.ok(html.includes('视频一'))
   assert.ok(html.includes('i0.hdslb.com/1.jpg'))
@@ -65,7 +65,7 @@ test('report.html 落盘 + formatDigestHtml', () => {
   saveReportHtml(meta.feed_id, html)
   assert.ok(readReportHtml(meta.feed_id))
   assert.equal(publicMeta(getMeta(meta.feed_id)).has_report, true)
-  assert.ok(readFileSync(readReportHtml(meta.feed_id), 'utf8').includes('AI情报调查报告'))
+  assert.ok(readFileSync(readReportHtml(meta.feed_id), 'utf8').includes('情报调查报告'))
 })
 
 test('deleteFeed', () => {

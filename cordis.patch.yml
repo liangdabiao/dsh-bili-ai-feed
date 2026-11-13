@@ -1,4 +1,4 @@
-# B站AI信息源：bili_feed 工具（爆款扫描+聚类+情报 briefing+HTML 日报）+ bili-ai-feed 技能 + 侧栏看板。
+# B站爆款雷达：bili_feed 工具（爆款扫描+聚类+情报 briefing+HTML 日报）+ bili-ai-feed 技能 + 侧栏看板。
 # 浏览器半边由 dsh.client 声明加载。
 - insert:
     - id: bili-ai-feed
